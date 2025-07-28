@@ -27,6 +27,7 @@ To run this project, you need an API key from [OpenWeatherMap](https://openweath
 
 ```bash
 OPENWEATHER_API_KEY=your_api_key_here
+```
 
 Installation & Run
 
