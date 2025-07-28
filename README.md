@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CityWeather
 
-## Getting Started
+CityWeather is a simple weather application built with **Next.js** and **TypeScript**. It allows users to check current weather conditions and local time for any city in the world using external APIs.
 
-First, run the development server:
+## Features
+
+- Search for real-time weather by city name
+- Dynamic background and weather icons based on current conditions
+- Displays temperature, short weather description, feels-like value and coordinates
+- Retrieves current local time based on city’s location
+- Built-in retry mechanism for unstable time API calls
+
+## Technologies Used
+
+- **Next.js 15**
+- **TypeScript**
+- **Tailwind CSS**
+- **OpenWeatherMap API**
+- **WorldTimeAPI**
+
+## API Key
+
+To run this project, you need an API key from [OpenWeatherMap](https://openweathermap.org/api).
+
+1. Create a `.env.local` file in the root directory.
+2. Add the following line:
 
 ```bash
+OPENWEATHER_API_KEY=your_api_key_here
+
+Installation & Run
+
+git clone https://github.com/WiktoriaKalisz/CityWeather.git
+cd CityWeather
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then go to http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Skills Demonstrated
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Working with external REST APIs
+- Developing full-stack website with Next.js App Router and dynamic routing
+- Building UI with responsive design using Tailwind CSS
 
-## Learn More
+📸 Preview
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Search Page](./images/Screenshot1.png)
+![Broken Clouds](./images/Screenshot2.png)
+![Opis obrazka](./images/Screenshot3.png)
+![Clear Sky Day](./images/Screenshot4.png)
+![Error Page](./images/Screenshot5.png)

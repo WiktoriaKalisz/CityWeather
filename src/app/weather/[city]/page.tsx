@@ -5,7 +5,7 @@ interface Params {
   const iconInfoMap: Record<string, { icon: string; bg: string }> = {
     "01d": {
       icon: "/icons/clear-day.png",
-      bg: "bg-gradient-to-b from-green-300 via-yellow-200 to-orange-300",
+      bg: "bg-gradient-to-b from-sky-300  to-orange-300",
     },
     "01n": {
       icon: "/icons/clear-night.png",
@@ -84,8 +84,7 @@ interface Params {
     const res = await fetch(url);
     if (!res.ok) {
         const errorData = await res.json();
-        console.error("Błąd API:", errorData);
-        throw new Error("Nie udało się pobrać danych pogodowych: " + (errorData.message || "unknown error"));
+        throw new Error(errorData.message || "unknown error");
       }
     return res.json();
   };
@@ -195,9 +194,8 @@ interface Params {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-red-100 to-red-300 text-center px-4">
           <div className="text-red-800 text-xl">
-            <h1 className="font-bold mb-2">Error: Couldn't fetch the data</h1>
-            <p>Check if the city name is correct: {params.city}</p>
-            <p className="mt-2 text-red-600">{error instanceof Error ? error.message : String(error)}</p>
+            <h1 className="font-bold mb-2">Error: Couldn't fetch the data for city: {params.city}</h1>
+            <p className="capitalize">{error instanceof Error ? error.message : String(error)}</p>
           </div>
         </div>
       );
