@@ -30,10 +30,13 @@ The design of CityWeather incorporates few key UX principles to create an intuit
 
 - Aesthetic-Usability Effect
 Visually pleasing UI with soft gradients and clean typography improves perceived usability.
+
 - Law of Proximity
 Related weather data is grouped closely together, making it easier to scan and understand.
+
 - Mental Model & Jakob’s Law
 The interface follows user expectations based on other weather apps, minimizing the learning curve.
+
 - Cognitive Load Reduction
 Simple layout, limited options, and large icons make it easy to interact with the content.
 
