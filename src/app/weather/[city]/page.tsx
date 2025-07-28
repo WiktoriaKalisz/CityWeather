@@ -116,7 +116,7 @@ interface Params {
         (err.message.includes("ECONNRESET") || err.message.includes("fetch failed"))
       ) {
         console.warn(`Retrying getTimeData due to network error, attempts left: ${retries}`);
-        await new Promise(res => setTimeout(res, 2000)); // delay before retry
+        await new Promise(res => setTimeout(res, 300)); // delay before retry
         return getTimeData(lat, lon, retries - 1);
       }
   
