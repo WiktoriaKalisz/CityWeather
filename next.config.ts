@@ -1,14 +1,10 @@
-import type { NextConfig } from "next";
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" }); 
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-// next.config.js
-module.exports = {
+const nextConfig = {
   env: {
     OPENWEATHER_API_KEY: process.env.OPENWEATHER_API_KEY,
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

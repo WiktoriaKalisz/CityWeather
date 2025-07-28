@@ -13,7 +13,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-pink-200 to-sky-200 p-6">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-sky-200 to-pink-200 p-6">
       <h1 className="text-4xl font-extrabold mb-8 text-cyan-800">CITY WEATHER</h1>
       <form onSubmit={handleSubmit} className="w-full max-w-sm min-w-[200px]">
       <div className="relative flex items-center">
@@ -23,7 +23,7 @@ export default function Home() {
         <input
           type="text"
           className="w-full bg-transparent placeholder:text-cyan-800 placeholder:opacity-50 text-cyan-800 text-sm border border-slate-200 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-          placeholder="UI Kits, Dashboards..."
+          placeholder="Enter city name..."
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
         />
