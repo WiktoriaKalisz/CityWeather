@@ -45,8 +45,8 @@ Then go to http://localhost:3000 in your browser.
 
 📸 Preview
 
-![Search Page](./images/Screenshot1.png)
-![Broken Clouds](./images/Screenshot2.png)
-![Opis obrazka](./images/Screenshot3.png)
-![Clear Sky Day](./images/Screenshot4.png)
-![Error Page](./images/Screenshot5.png)
+![Search Page](images/Screenshot1.png)
+![Broken Clouds](images/Screenshot2.png)
+![Opis obrazka](images/Screenshot3.png)
+![Clear Sky Day](images/Screenshot4.png)
+![Error Page](images/Screenshot5.png)
