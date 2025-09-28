@@ -18,6 +18,28 @@ CityWeather is a simple weather application built with **Next.js** and **TypeScr
 - **OpenWeatherMap API**
 - **WorldTimeAPI**
 
+## Skills Demonstrated
+
+- Working with external REST APIs
+- Developing a full-stack web application using Next.js App Router and dynamic routing
+- Building UI with responsive design using Tailwind CSS
+
+## UX Principles Applied
+
+The design of CityWeather incorporates few key UX principles to create an intuitive and user-friendly experience:
+
+- **Aesthetic-Usability Effect**  
+Visually pleasing UI with soft gradients and clean typography improves perceived usability.
+
+- **Law of Proximity**  
+Related weather data is grouped closely together, making it easier to scan and understand.
+
+- **Mental Model & Jakob’s Law**  
+The interface follows user expectations based on other weather apps, minimizing the learning curve.
+
+- **Cognitive Load Reduction**  
+Simple layout, limited options, and large icons make it easy to interact with the content.
+
 ## API Key
 
 To run this project, you need an API key from [OpenWeatherMap](https://openweathermap.org/api).
@@ -26,9 +48,10 @@ To run this project, you need an API key from [OpenWeatherMap](https://openweath
 2. Add the following line:
 
 ```bash
-OPENWEATHER_API_KEY=your_api_key_here
+OPENWEATHER_API_KEY=api_key
+```
 
-Installation & Run
+## Installation & Run
 
 git clone https://github.com/WiktoriaKalisz/CityWeather.git
 cd CityWeather
