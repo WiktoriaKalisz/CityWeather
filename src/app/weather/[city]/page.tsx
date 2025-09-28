@@ -2,6 +2,24 @@ interface Params {
     params: Promise<{ city: string }>;
   }
 
+  interface TimeApiResponse {
+    abbreviation: string;
+    client_ip: string;
+    datetime: string;
+    day_of_week: number;
+    day_of_year: number;
+    dst: boolean;
+    dst_from: string | null;
+    dst_offset: number;
+    dst_until: string | null;
+    raw_offset: number;
+    timezone: string;
+    unixtime: number;
+    utc_datetime: string;
+    utc_offset: string;
+    week_number: number;
+  }
+
   const iconInfoMap: Record<string, { icon: string; bg: string }> = {
     "01d": {
       icon: "/icons/clear-day.png",
@@ -90,7 +108,7 @@ interface Params {
   };
 
   /** Fetches time data with retry logic and delay due to occasional API fetch failures. */
-  const getTimeData = async (lat: number, lon: number, retries = 3): Promise<any> => {
+  const getTimeData = async (lat: number, lon: number, retries = 3): Promise<TimeApiResponse> => {
     try {
       const timezoneRes = await fetch(`https://worldtimeapi.org/api/timezone`);
       if (!timezoneRes.ok) {
@@ -116,7 +134,7 @@ interface Params {
         (err.message.includes("ECONNRESET") || err.message.includes("fetch failed"))
       ) {
         console.warn(`Retrying getTimeData due to network error, attempts left: ${retries}`);
-        await new Promise(res => setTimeout(res, 2000)); // delay before retry
+        await new Promise(res => setTimeout(res, 300)); // delay before retry
         return getTimeData(lat, lon, retries - 1);
       }
   
@@ -194,7 +212,7 @@ interface Params {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-red-100 to-red-300 text-center px-4">
           <div className="text-red-800 text-xl">
-            <h1 className="font-bold mb-2">Error: Couldn't fetch the data for city: {params.city}</h1>
+            <h1 className="font-bold mb-2">Error: Couldn&apos;t fetch the data for city: {params.city}</h1>
             <p className="capitalize">{error instanceof Error ? error.message : String(error)}</p>
           </div>
         </div>

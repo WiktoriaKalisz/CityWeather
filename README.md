@@ -43,7 +43,7 @@ Then go to http://localhost:3000 in your browser.
 - Developing full-stack website with Next.js App Router and dynamic routing
 - Building UI with responsive design using Tailwind CSS
 
-📸 Preview
+Preview
 
 ![Search Page](images/Screenshot1.png)
 ![Broken Clouds](images/Screenshot2.png)
