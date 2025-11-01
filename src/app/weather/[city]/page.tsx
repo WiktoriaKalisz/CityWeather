@@ -95,6 +95,37 @@ interface Params {
     },
   };
 
+  const removePolishChars = (text: string): string => {
+    if (!text) return text;
+  
+    const map: Record<string, string> = {
+      ą: "a",
+      ć: "c",
+      ę: "e",
+      ł: "l",
+      ń: "n",
+      ó: "o",
+      ś: "s",
+      ź: "z",
+      ż: "z",
+      Ą: "A",
+      Ć: "C",
+      Ę: "E",
+      Ł: "L",
+      Ń: "N",
+      Ó: "O",
+      Ś: "S",
+      Ź: "Z",
+      Ż: "Z",
+    };
+  
+    return text
+      .split("")
+      .map(char => map[char] || char)
+      .join("");
+  };
+  
+
   const getWeatherData = async (city: string) => {
     const apiKey = process.env.OPENWEATHER_API_KEY;
 
@@ -150,9 +181,9 @@ interface Params {
   
   export default async function Page(props: Params) {
     const params = await props.params;
-  
+    const cleanCity = removePolishChars(decodeURIComponent(params.city));
     try {
-      const weather = await getWeatherData(params.city);
+      const weather = await getWeatherData(cleanCity);
       const { main, weather: weatherArr, coord } = weather;
       const iconCode = weatherArr[0]?.icon;
   
@@ -179,7 +210,7 @@ interface Params {
             <div className="flex justify-center mb-30 mt-10">
               <img src={iconPath} alt={`Icon ${iconCode}`} className="w-50 h-50 drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]" />
             </div>
-            <h2 className="text-4xl mb-3 tracking-[0.4em]">{params.city}</h2>
+            <h2 className="text-4xl mb-3 tracking-[0.4em]">{cleanCity}</h2>
             <hr className="border-white/80 mb-3" />
             {time && (
               <div className="text-white/90 space-y-2">
@@ -212,7 +243,7 @@ interface Params {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-red-100 to-red-300 text-center px-4">
           <div className="text-red-800 text-xl">
-            <h1 className="font-bold mb-2">Error: Couldn&apos;t fetch the data for city: {params.city}</h1>
+            <h1 className="font-bold mb-2">Error: Couldn&apos;t fetch the data for city: {cleanCity}</h1>
             <p className="capitalize">{error instanceof Error ? error.message : String(error)}</p>
           </div>
         </div>
