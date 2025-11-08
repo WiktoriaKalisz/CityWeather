@@ -12,11 +12,11 @@ CityWeather is a simple weather application built with **Next.js** and **TypeScr
 
 ## Technologies Used
 
-- **Next.js 15**
-- **TypeScript**
-- **Tailwind CSS**
-- **OpenWeatherMap API**
-- **WorldTimeAPI**
+- **Next.js 13+ (App Router) with React components**
+- **TypeScript for type safety and maintainability**
+- **Tailwind CSS for responsive styling**
+- **OpenWeatherMap API for fetching real-time weather data like temperature and conditions**
+- **WorldTimeAPI for fetching real-time city information like timezone and local time**
 
 ## Skills Demonstrated
 
@@ -59,6 +59,8 @@ npm install
 npm run dev
 
 Then go to http://localhost:3000 in your browser.
+
+> ⚠️ Note: Sometimes data may not load due to temporary server issues on OpenWeatherMap or WorldTimeAPI. If this happens, try refreshing the page or wait a few moments before retrying.
 
 ## Skills Demonstrated
 
