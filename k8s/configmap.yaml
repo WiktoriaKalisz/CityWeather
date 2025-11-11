@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weather-app-config
+data:
+  WEATHER_API_BASE: "https://api.openweathermap.org/data/2.5"
+  TIME_API_BASE: "https://worldtimeapi.org/api/timezone"
