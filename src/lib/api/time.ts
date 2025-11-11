@@ -30,13 +30,15 @@ export const getTimeData = async (
 
     const data = await res.json();
     return data;
-  } catch (err: any) {
-    if (retries > 0 && /fetch failed|ECONNRESET/.test(err.message)) {
+  } catch (err: unknown) {
+    if (retries > 0 && err instanceof Error && /fetch failed|ECONNRESET/.test(err.message)) {
       await new Promise((res) => setTimeout(res, 300));
       return getTimeData(lat, lon, retries - 1);
     }
 
     if (err instanceof AppError) throw err;
-    throw AppError.Unknown(err.message);
+    if (err instanceof Error) throw AppError.Unknown(err.message);
+
+    throw AppError.Unknown("An unknown error occurred while fetching time data");
   }
 };

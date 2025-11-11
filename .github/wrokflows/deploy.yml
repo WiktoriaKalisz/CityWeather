@@ -34,10 +34,10 @@ jobs:
           docker build -t myuser/weather-app:latest .
           docker push myuser/weather-app:latest
 
-      - name: Deploy to Kubernetes
-        uses: azure/k8s-deploy@v4
-        with:
-          manifests: |
-            k8s/deployment.yaml
-            k8s/service.yaml
-          images: myuser/weather-app:latest
+      # - name: Deploy to Kubernetes
+      #   uses: azure/k8s-deploy@v4
+      #   with:
+      #     manifests: |
+      #       k8s/deployment.yaml
+      #       k8s/service.yaml
+      #     images: myuser/weather-app:latest

@@ -14,10 +14,14 @@ export const getWeatherData = async (city: string) => {
     }
 
     return await res.json();
-  } catch (err: any) {
-    if (err.name === "FetchError" || /fetch failed|ECONNRESET/.test(err.message)) {
-      throw AppError.Network();
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      if (err.name === "FetchError" || /fetch failed|ECONNRESET/.test(err.message)) {
+        throw AppError.Network();
+      }
+      throw AppError.Unknown(err.message);
     }
-    throw AppError.Unknown(err.message);
+
+    throw AppError.Unknown("An unknown error occurred while fetching weather data");
   }
 };

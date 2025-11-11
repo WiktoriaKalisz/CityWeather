@@ -3,6 +3,8 @@ import { getTimeData } from "@/lib/api/time";
 import { removePolishChars } from "@/lib/utils/text";
 import { iconInfoMap } from "@/lib/utils/icons";
 import { handleError } from "@/lib/errors/handleError";
+import Link from "next/link";
+import Image from "next/image";
 
 interface Params {
   params: Promise<{ city: string }>;
@@ -31,7 +33,7 @@ export default async function Page({ params }: Params) {
           <p className="text-xl font-bold mb-1">{weatherArr[0]?.description}</p>
 
           <p className="text-xs text-white/80 flex items-center gap-2">
-            <img
+            <Image
               src="/icons/temperature.png"
               alt="Feels like"
               className="w-4 h-4"
@@ -40,7 +42,7 @@ export default async function Page({ params }: Params) {
           </p>
 
           <div className="flex justify-center mb-30 mt-10">
-            <img
+            <Image
               src={icon}
               alt={`Icon ${iconCode}`}
               className="w-50 h-50 drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
@@ -90,12 +92,12 @@ export default async function Page({ params }: Params) {
           <p className="text-xs text-red-500/60">Code: {code}</p>
 
           <div className="mt-4">
-            <a
+            <Link
               href="/"
               className="inline-block px-4 py-2 rounded-md bg-red-800 text-white text-sm hover:bg-red-900 transition"
             >
               Go back
-            </a>
+            </Link>
           </div>
         </div>
       </div>
