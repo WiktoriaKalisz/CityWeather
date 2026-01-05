@@ -1,4 +1,4 @@
-import Page from '@/app/weather/[city]/page';
+import Page from '../[city]/page';
 import { getWeatherData } from '@/lib/api/weather';
 import { getTimeData } from '@/lib/api/time';
 import { render, screen } from '@testing-library/react';
