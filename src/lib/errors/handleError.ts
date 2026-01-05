@@ -11,7 +11,7 @@ export function handleError(error: unknown): { message: string; code: string } {
 
   if (error instanceof Error) {
     if (error.message.includes("fetch failed") || error.message.includes("ECONNRESET")) {
-      return { message: "Network error — please check your connection.", code: "NETWORK" };
+      return { message: "Network error — please check your connection.", code: "NETWORK_ERROR" };
     }
     return { message: error.message, code: "GENERIC_ERROR" };
   }
