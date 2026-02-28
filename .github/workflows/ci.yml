@@ -39,6 +39,8 @@ jobs:
           start: npm run dev
           wait-on: http://localhost:3000
           browser: chrome
+        env:
+          NEXT_PUBLIC_USE_MOCKS: 1
 
   docker-build-and-push:
     runs-on: ubuntu-latest
