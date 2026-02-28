@@ -60,7 +60,7 @@ describe('iconInfoMap', () => {
         const dayCode = code;
         const nightCode = code.replace('d', 'n');
         if (iconInfoMap[nightCode]) {
-          // skip mist (50d/50n) which intentionally has the same background
+          // skip mist (50d/50n) which has the same background
           if (dayCode !== '50d') {
             expect(iconInfoMap[dayCode].bg).not.toBe(iconInfoMap[nightCode].bg);
           }
