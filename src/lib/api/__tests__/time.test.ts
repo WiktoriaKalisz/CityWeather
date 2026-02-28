@@ -1,23 +1,22 @@
-import { getTimeData } from '@/lib/api/time';
-import tzLookup from 'tz-lookup';
-import { CONFIG } from '@/lib/config';
-import { AppError } from '@/lib/errors/AppError';
+import { getTimeData } from '@/lib/api/sun';
 
-jest.mock('tz-lookup');
 
 describe('getTimeData', () => {
-  const mockTzLookup = tzLookup as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
     global.fetch = jest.fn();
-    mockTzLookup.mockReturnValue('Europe/Warsaw');
   });
 
   it('fetches time data successfully', async () => {
     const mockData = {
-      datetime: '2026-01-01T00:00:00Z',
+      date_time: '2026-01-01T00:00:00Z',
+      date: '2026-01-01',
+      time: '00:00:00',
+      day_of_week: 4,
+      dst_active: false,
       timezone: 'Europe/Warsaw',
+      utc_offset_seconds: 3600,
     };
 
     (global.fetch as jest.Mock).mockResolvedValueOnce({
@@ -29,9 +28,8 @@ describe('getTimeData', () => {
     const result = await getTimeData(50.06, 19.94);
 
     expect(result).toEqual(mockData);
-    expect(mockTzLookup).toHaveBeenCalledWith(50.06, 19.94);
     expect(global.fetch).toHaveBeenCalledWith(
-      `${CONFIG.TIME_API_BASE}/Europe/Warsaw`
+      expect.stringContaining('/current/coordinate?latitude=50.06&longitude=19.94')
     );
   });
 

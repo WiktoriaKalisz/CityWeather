@@ -20,6 +20,7 @@ const customJestConfig = {
     '!src/**/*.stories.{js,jsx,ts,tsx}',
     '!src/**/__tests__/**',
   ],
+  
 }
 
 module.exports = createJestConfig(customJestConfig)

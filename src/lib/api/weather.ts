@@ -1,7 +1,12 @@
 import { CONFIG } from "../config";
 import { AppError } from "../errors/AppError";
+import { mockedWeatherData } from "../../../__mocks__/weather";
 
-export const getWeatherData = async (city: string) => {
+export async function getWeatherData(city: string) {
+  if (CONFIG.USE_MOCKS) {
+    return mockedWeatherData;
+  }
+
   const { OPENWEATHER_API_KEY, WEATHER_API_BASE } = CONFIG;
   const url = `${WEATHER_API_BASE}/weather?q=${encodeURIComponent(city)}&appid=${OPENWEATHER_API_KEY}&units=metric`;
 

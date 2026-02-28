@@ -3,7 +3,12 @@ import { render, screen } from '@testing-library/react';
 
 describe('RootLayout', () => {
   it('renders children inside the layout', () => {
-    render(<RootLayout children={<div>InnerChild</div>} /> as any);
+    render(
+      <RootLayout>
+        <div>InnerChild</div>
+      </RootLayout>
+    );
+
     expect(screen.getByText('InnerChild')).toBeInTheDocument();
   });
 });

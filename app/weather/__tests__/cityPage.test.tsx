@@ -1,16 +1,34 @@
 import Page from '../[city]/page';
 import { getWeatherData } from '@/lib/api/weather';
 import { getTimeData } from '@/lib/api/time';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import React from 'react';
 
 jest.mock('@/lib/api/weather', () => ({
   getWeatherData: jest.fn(),
 }));
+
 jest.mock('@/lib/api/time', () => ({
   getTimeData: jest.fn(),
 }));
-jest.mock('next/image', () => ({ __esModule: true, default: (props: any) => <img {...props} /> }));
-jest.mock('next/link', () => ({ __esModule: true, default: ({ children, href }: any) => <a href={href}>{children}</a> }));
+
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img {...props} alt={props.alt ?? ''} />
+  ),
+}));
+
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: ({
+    children,
+    href,
+  }: {
+    children: React.ReactNode;
+    href: string;
+  }) => <a href={href}>{children}</a>,
+}));
 
 describe('City Page (server component)', () => {
   beforeEach(() => {
@@ -34,9 +52,11 @@ describe('City Page (server component)', () => {
       week_number: 1,
     });
 
-    const element = await Page({ params: Promise.resolve({ city: encodeURIComponent('Łódź') }) } as any);
+    const element = await Page({
+      params: { city: encodeURIComponent('Łódź') },
+    });
 
-    const { container } = render(element as any);
+    const { container } = render(element);
 
     expect(container).toHaveTextContent('12°C');
     expect(container).toHaveTextContent(/light rain/i);

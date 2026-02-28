@@ -1,5 +1,5 @@
 import { getWeatherData } from "@/lib/api/weather";
-import { getTimeData } from "@/lib/api/time";
+import { getSunTimes } from "@/lib/api/sun";
 import { removePolishChars } from "@/lib/utils/text";
 import { iconInfoMap } from "@/lib/utils/icons";
 import { handleError } from "@/lib/errors/handleError";
@@ -22,60 +22,47 @@ export default async function Page({ params }: Params) {
     const iconCode = weatherArr[0]?.icon;
     const { icon, bg } = iconInfoMap[iconCode] || iconInfoMap["50d"];
 
-    const time = await getTimeData(lat, lon);
+    const sunTimes = await getSunTimes(lat, lon);
 
     return (
-      <div
-        className={`min-h-screen flex items-center justify-center px-4 ${bg} tracking-widest`}
-      >
+      <div className={`min-h-screen flex items-center justify-center px-4 ${bg} tracking-widest`}>
         <div className="text-white max-w-md w-full uppercase mx-auto text-left">
           <h1 className="text-6xl mb-1">{Math.round(main.temp)}°C</h1>
           <p className="text-xl font-bold mb-1">{weatherArr[0]?.description}</p>
 
-          <p className="text-xs text-white/80 flex items-center gap-2">
-            <Image
-              src="/icons/temperature.png"
-              alt="Feels like"
-              className="w-4 h-4"
-            />
+          <p className="text-xs text-white/70 flex items-center gap-2">
+            <Image src="/icons/temperature.png" alt="Feels like" width={12} height={12}/>
             <span>FEELS: {Math.round(main.feels_like)}°C</span>
           </p>
 
-          <div className="flex justify-center mb-30 mt-10">
-            <Image
-              src={icon}
-              alt={`Icon ${iconCode}`}
-              className="w-50 h-50 drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
-            />
+          <div className="flex justify-center mb-20 mt-10">
+            <Image src={icon} alt={`Icon ${iconCode}`} className="drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]" width={200} height={200}/>
           </div>
 
-          <h2 className="text-4xl mb-3 tracking-[0.4em]">{cleanCity}</h2>
+          <h2 className="text-5xl font-bold mb-3 tracking-[0.4em]">{cleanCity}</h2>
           <hr className="border-white/80 mb-3" />
 
-          {time && (
+          {sunTimes && (
             <div className="text-white/90 space-y-2">
-              <p className="text-sm text-white/70">{time.timezone}</p>
-              <div className="flex justify-between items-center text-2xl font-medium w-full">
-                <span>
-                  {new Date(time.datetime).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
-                <span className="font-mono text-md">
-                  {new Date(time.datetime).toLocaleTimeString("en-GB", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </span>
+              <p className="text-xs text-white/70">Time zone: {sunTimes.tzid}</p>
+               <div className="text-xs font-bold w-full mb-10">
+                Current UTC time: {new Date(sunTimes.currentTime).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+              </div>
+              <div className="flex justify-between items-center text-xs text-white/70">
+                <span>Sunrise: {new Date(sunTimes.sunrise).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</span>
+                <span>Sunset: {new Date(sunTimes.sunset).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</span>
+              </div>
+              <div className="flex justify-between items-center text-xs text-white/70">
+            <span>Lat: {lat.toFixed(4)}</span>
+            <span>Lon: {lon.toFixed(4)}</span>
+          </div>
+              <div className="text-xs text-white/70">
+                Day length: {Math.floor(sunTimes.day_length / 3600)}h {Math.floor((sunTimes.day_length % 3600) / 60)}m
               </div>
             </div>
           )}
 
-          <div className="flex gap-4 text-sm text-white/70 mt-2">
-            <span>Lat: {lat.toFixed(4)}</span>
-            <span>Lon: {lon.toFixed(4)}</span>
-          </div>
+          
         </div>
       </div>
     );
@@ -90,12 +77,8 @@ export default async function Page({ params }: Params) {
           </h1>
           <p className="text-red-700/80">{message}</p>
           <p className="text-xs text-red-500/60">Code: {code}</p>
-
           <div className="mt-4">
-            <Link
-              href="/"
-              className="inline-block px-4 py-2 rounded-md bg-red-800 text-white text-sm hover:bg-red-900 transition"
-            >
+            <Link href="/" className="inline-block px-4 py-2 rounded-md bg-red-800 text-white text-sm hover:bg-red-900 transition">
               Go back
             </Link>
           </div>

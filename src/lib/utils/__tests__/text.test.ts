@@ -48,7 +48,7 @@ describe('removePolishChars', () => {
   });
 
   it('should handle null or undefined gracefully', () => {
-    expect(removePolishChars(null as any)).toBe(null);
-    expect(removePolishChars(undefined as any)).toBe(undefined);
+    expect(removePolishChars(null as unknown as string)).toBe(null);
+    expect(removePolishChars(undefined as unknown as string)).toBe(undefined);
   });
 });

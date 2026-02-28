@@ -23,7 +23,7 @@ describe('iconInfoMap', () => {
 
 
   it('should have both icon and bg properties for all mappings', () => {
-    Object.entries(iconInfoMap).forEach(([code, info]) => {
+    Object.entries(iconInfoMap).forEach(([, info]) => {
       expect(info).toHaveProperty('icon');
       expect(info).toHaveProperty('bg');
       expect(typeof info.icon).toBe('string');
