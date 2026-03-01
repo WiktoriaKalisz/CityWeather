@@ -19,6 +19,7 @@ CityWeather is a simple weather application built with **Next.js** and **TypeScr
 - **timeapi.io for fetching real-time city information like timezone and local time**
 - **Jest for unit testing**
 - **Cypress for e2e testing**
+- **Docker for containerized builds**
 
 ## CICD
 
@@ -94,7 +95,7 @@ npm run dev
 
 Then go to http://localhost:3000 in your browser.
 
-> ⚠️ Note: Sometimes data may not load due to temporary server issues on OpenWeatherMap or timeapi.io. If this happens, try refreshing the page or wait a few moments before retrying.
+> Note: Sometimes data may not load due to temporary server issues on OpenWeatherMap or timeapi.io. If this happens, try refreshing the page or wait a few moments before retrying.
 # API Changes
 
 As of February 2026, CityWeather uses [timeapi.io](https://timeapi.io/) instead of the now-closed WorldTimeAPI for fetching timezone and local time data. The app now calls:
@@ -105,13 +106,7 @@ https://timeapi.io/api/v1/time/current/coordinate?latitude={lat}&longitude={lon}
 
 to get the current time and timezone for a given city.
 
-## Skills Demonstrated
-
-- Working with external REST APIs
-- Developing full-stack website with Next.js App Router and dynamic routing
-- Building UI with responsive design using Tailwind CSS
-
-Preview
+# Preview
 
 ![Search Page](images/Screenshot1.png)
 ![Broken Clouds](images/Screenshot2.png)
