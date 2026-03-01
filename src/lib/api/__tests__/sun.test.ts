@@ -118,6 +118,6 @@ describe('getSunTimes', () => {
     expect(result).toBeDefined();
     expect(global.fetch).not.toHaveBeenCalled();
   
-    CONFIG.USE_MOCKS = false; // cleanup
+    CONFIG.USE_MOCKS = false;
   });
 });
