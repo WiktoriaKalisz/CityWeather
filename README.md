@@ -17,6 +17,8 @@ CityWeather is a simple weather application built with **Next.js** and **TypeScr
 - **Tailwind CSS for responsive styling**
 - **OpenWeatherMap API for fetching real-time weather data like temperature and conditions**
 - **timeapi.io for fetching real-time city information like timezone and local time**
+- **Jest for unit testing**
+- **Cypress for e2e testing**
 
 ## CICD
 
@@ -51,6 +53,10 @@ CityWeather uses a CI/CD pipeline to ensure reliable deployments and maintain co
 - Working with external REST APIs
 - Developing a full-stack web application using Next.js App Router and dynamic routing
 - Building UI with responsive design using Tailwind CSS
+- Setting up CI/CD pipeline with GitHub Actions to automatically lint, run unit and e2e tests, collect coverage and deploy buulds to Vercel
+- Writing unit tests with Jest and generating coverage reports
+- Writing end-to-end tests with Cypress to simulate real user interactions
+- Managing test artifacts by uploading coverage reports for monitoring code quality
 
 ## UX Principles Applied
 
